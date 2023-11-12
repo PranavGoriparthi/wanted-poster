@@ -1,0 +1,211 @@
+:host {
+  display: block;
+  position: relative;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
+  background-image: url('/images/cement-wall.jpg');
+  background-position: center;
+  background-size: cover;
+  background-blend-mode: multiply;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+:host(.warcriminal) {
+  background-image: url('/images/cement-wall.jpg'),
+    url('/images/blood-stains-0.png');
+}
+
+:host(.dragin) {
+  background-color: rgb(192 192 192);
+}
+
+#uploadInput {
+  display: none;
+}
+
+.blood-overlay {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  animation-duration: 4s;
+  animation-name: fade-in;
+  background-image: url('/images/blood-stains-1.png');
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.blood-overlay--visible {
+  display: block;
+}
+
+.loading-overlay {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  background-image: radial-gradient(#e1e4e7, #a5aab0);
+  width: 100%;
+  height: 100%;
+}
+
+.loading-overlay__luffy {
+  filter: drop-shadow(0 3px 3px rgb(0 0 0 / 50%));
+  max-width: 50vw;
+  max-height: 40vh;
+}
+
+.tips-button {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+}
+
+.tips-button > svg {
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 50%));
+  transition: 0.2s;
+}
+
+.tips-button > svg:hover {
+  filter: drop-shadow(0 0 3px #c08000) drop-shadow(0 0 5px #fffca3);
+}
+
+.tips-button--hidden {
+  display: none;
+}
+
+.optc-button {
+  position: fixed;
+  top: 0.5rem;
+  right: 5rem;
+  filter: drop-shadow(0 0 0.125rem rgb(0 0 0));
+  transition: filter 0.2s;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  background-image: url('/images/tavern-button.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  padding: 0;
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+.optc-button--hidden {
+  display: none;
+}
+
+.optc-button:hover {
+  filter: drop-shadow(0 0 0.18rem rgba(0 0 0));
+}
+
+.button-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  gap: 0.5rem;
+  box-sizing: border-box;
+  padding: 0 1rem 1rem;
+}
+
+.button-container--hidden {
+  display: none;
+}
+
+.criminal {
+  position: fixed;
+  right: 1rem;
+  bottom: 1.2rem;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    visiblity 2s,
+    opacity 2s;
+  cursor: pointer;
+  margin-left: auto;
+  outline: none;
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  width: 4rem;
+  max-width: 15vw;
+  height: 4rem;
+  max-height: 15vw;
+}
+
+.criminal--visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+.criminal.criminal--visible::after {
+  top: 55%;
+  opacity: 1;
+}
+
+.criminal::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: contrast(85%) brightness(0%) drop-shadow(1px 1px 0.5rem crimson)
+    drop-shadow(-1px -1px 0.5rem crimson);
+  transition: filter 0.5s;
+  background-image: url('/images/war-criminal/criminal-avatar.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  content: ' ';
+}
+
+.criminal--stamp::before {
+  filter: contrast(85%) brightness(110%)
+    drop-shadow(1px 1px 0.1rem rgb(0 0 0 / 50%))
+    drop-shadow(-1px -1px 0.1rem rgb(0 0 0 / 50%));
+  background-image: url('/images/war-criminal/criminal-stamp.png'),
+    url('/images/war-criminal/criminal-avatar.png');
+}
+
+.criminal::after {
+  position: absolute;
+  top: 120%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  filter: brightness(100%) !important;
+  transition: 1s ease-out;
+  content: '?';
+  color: white;
+  font-size: min(7vw, 2rem);
+}
+
+.criminal--stamp::after {
+  content: '';
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.8;
+  }
+}
